@@ -33,6 +33,18 @@ public class UserService {
     return userRepository.insert(obj);
   }
 
+  public User update(User obj) {
+    Optional<User> newObjOptional = userRepository.findById(obj.getId());
+    User newObj = newObjOptional.orElseThrow(() -> new ObjectNotFoundException(("Objeto nao encontrado")));
+    updateData(newObj, obj);
+    return userRepository.save(newObj);
+  }
+
+  private void updateData(User newObj, User obj) {
+    newObj.setName(obj.getName());
+    newObj.setEmail(obj.getEmail());
+  }
+
   public User fromDTO(UserDTO objDto) {
     return new User(objDto.getId(), objDto.getName(), objDto.getEmail());
   }
