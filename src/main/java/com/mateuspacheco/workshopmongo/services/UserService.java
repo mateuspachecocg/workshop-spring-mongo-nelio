@@ -33,6 +33,11 @@ public class UserService {
     return userRepository.insert(obj);
   }
 
+  public void delete(String id) {
+    findById(id);
+    userRepository.deleteById(id);
+  }
+
   public User update(User obj) {
     Optional<User> newObjOptional = userRepository.findById(obj.getId());
     User newObj = newObjOptional.orElseThrow(() -> new ObjectNotFoundException(("Objeto nao encontrado")));
