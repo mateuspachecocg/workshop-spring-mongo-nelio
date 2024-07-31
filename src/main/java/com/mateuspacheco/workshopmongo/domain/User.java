@@ -84,4 +84,8 @@ public class User implements Serializable {
     return true;
   }
 
+  public List<Post> getPosts() {
+    return posts;
+  }
+
 }
